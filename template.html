@@ -3,57 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZUGFeRD Standard Dokumentation</title>
+    <title>FacturX 1.0.7</title>
     <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <!-- FontAwesome CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- Google Fonts: Inter für eine moderne, gut lesbare Schriftart -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Google Fonts: Inter for a modern, highly readable font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    <!-- Minimaler Custom CSS für Funktionalität und spezifische Anpassungen -->
+    <!-- Minimal custom CSS for functionality and specific adjustments -->
     <style>
-        /* CSS Variablen für die Sidebar-Breite zur einfachen Anpassung und JS-Steuerung */
+        /* CSS variables for sidebar width for easy adjustment and JS control */
         :root {
-            --sidebar-width: 300px; /* Standardbreite der Sidebar */
-            --sidebar-min-width: 200px; /* Minimale Breite */
-            --sidebar-max-width: 500px; /* Maximale Breite */
-            /* Hier kann die globale Schriftgröße angepasst werden, z.B. --bs-body-font-size: 0.95rem; */
+            --sidebar-width: 300px; /* Default sidebar width */
+            --sidebar-min-width: 200px; /* Minimum width */
+            --sidebar-max-width: 500px; /* Maximum width */
+            /* Global font size can be adjusted here, e.g. --bs-body-font-size: 0.95rem; */
         }
 
-        html { /* Font-Family global setzen */
+        html { /* Set font-family globally */
             font-family: 'Inter', sans-serif;
         }
 
         body {
-            display: flex; /* Flexbox für Side-by-Side-Layout */
-            height: 100vh; /* Mindesthöhe des Bodys ist die gesamte Viewport-Höhe */
-            overflow: hidden; /* Verhindert Scrollbalken am Body, innere Bereiche scrollen */
-            /* Subtiler eleganter Farbverlauf für den Hintergrund */
+            display: flex; /* Flexbox for side-by-side layout */
+            height: 100vh; /* Minimum height of the body is the full viewport height */
+            overflow: hidden; /* Prevents scrollbars on the body; inner areas will scroll */
+            /* Subtle elegant gradient for the background */
             background-image: linear-gradient(to bottom right, #f5f7fa, #eef1f5);
         }
 
         #sidebar {
-            width: var(--sidebar-width); /* Sidebar-Breite wird über CSS-Variable gesteuert */
-            position: relative; /* Wichtig für den Resizer */
-            transition: width 0.1s ease-out; /* Sanfter Übergang beim Resizing */
-            /* Subtiler Schatten auf der rechten Seite */
+            width: var(--sidebar-width); /* Sidebar width controlled by CSS variable */
+            position: relative; /* Important for the resizer */
+            transition: width 0.1s ease-out; /* Smooth transition during resizing */
+            /* Subtle shadow on the right side */
             box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
         }
 
         #resizer {
-            width: 8px; /* Breite des Ziehgriffs */
+            width: 8px; /* Width of the drag handle */
             height: 100%;
             position: absolute;
             right: 0;
             top: 0;
-            cursor: ew-resize; /* Cursor-Anpassung beim Ziehen */
+            cursor: ew-resize; /* Cursor change when dragging */
             z-index: 10;
-            background-color: transparent; /* Unsichtbar, aber interaktiv */
+            background-color: transparent; /* Invisible but interactive */
         }
 
         #content-area {
-            /* Spezifischer Padding-Wert, kein direkter Bootstrap-Utility in dieser Genauigkeit */
+            /* Specific padding value, no direct Bootstrap utility for this precision */
             padding: 2.5rem;
         }
 
@@ -69,146 +69,129 @@
             text-overflow: ellipsis;
             color: var(--bs-body-color);
             /* Base padding for all links to provide consistent click area and space */
-            padding: var(--bs-spacer-y, 0.25rem) 4px; /* py-1 und links/rechts 4px padding */
+            padding: var(--bs-spacer-y, 0.25rem) 4px; /* py-1 and left/right 4px padding */
             transition: color 0.2s; /* Only text color transitions */
         }
 
-        /* Pseudo-element for fill effect */
-        .tree-view a::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 0; /* Initial state: no fill */
-            background-color: rgba(var(--bs-primary-rgb), 0.1); /* Light primary color background */           
-            z-index: -1; /* Place behind the link text/icon */
-            border-radius: inherit; /* Inherit border-radius from parent a */
-        }
+            /* Pseudo-element for fill effect */
+            .tree-view a::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 0; /* Initial state: no fill */
+                background-color: rgba(var(--bs-primary-rgb), 0.1); /* Light primary color background */
+                z-index: -1; /* Place behind the link text/icon */
+                border-radius: inherit; /* Inherit border-radius from parent a */
+            }
 
-        .tree-view a:hover {
-            color: var(--bs-primary); /* Text color on hover */
-        }
+            .tree-view a:hover {
+                color: var(--bs-primary); /* Text color on hover */
+            }
 
-        .tree-view a.active {
-            color: var(--bs-primary); /* Primary text color when active */
-            font-weight: 600; /* Bold text when active */
-        }
+            .tree-view a.active {
+                color: var(--bs-primary); /* Primary text color when active */
+                font-weight: 600; /* Bold text when active */
+            }
 
-        /* Active state for the pseudo-element */
-        .tree-view a.active::before {
-            width: 100%; /* Fill the entire width when active */
-        }
+                /* Active state for the pseudo-element */
+                .tree-view a.active::before {
+                    width: 100%; /* Fill the entire width when active */
+                }
 
-        /* Styling für den Aufklapp-Chevron */
+        /* Styling for the expand/collapse chevron */
         .toggle-icon {
-            transition: transform 0.2s ease-in-out; /* Sanfte Rotation */
+            transition: transform 0.2s ease-in-out; /* Smooth rotation */
             cursor: pointer;
-            /* Padding für Klickfläche des Icons */
+            /* Padding for the icon's click area */
             padding: var(--bs-spacer-y, 0.25rem) var(--bs-spacer-x, 0.5rem); /* py-1 px-2 */
-            line-height: 1; /* Vertikale Ausrichtung sicherstellen */
-            flex-shrink: 0; /* Verhindert, dass das Icon beim Textumbruch schrumpft */
+            line-height: 1; /* Ensure vertical alignment */
+            flex-shrink: 0; /* Prevents the icon from shrinking when text wraps */
         }
-        .toggle-icon.rotated {
-            transform: rotate(90deg); /* Rotiert das Icon, wenn es geöffnet ist */
-        }
+
+            .toggle-icon.rotated {
+                transform: rotate(90deg); /* Rotates the icon when it's opened */
+            }
 
         .fs-7 {
             font-size: 0.9rem;
         }
     </style>
 </head>
-<body class="m-0"> <!-- Bootstrap: m-0 für margin-0 -->
-    <!-- Linke Sidebar für die Baumansicht -->
+<body class="m-0">
+    <!-- Bootstrap: m-0 for margin-0 -->
+    <!-- Left sidebar for the tree view -->
     <aside id="sidebar" class="flex-shrink-0 bg-white overflow-auto py-4">
         <div id="sidebar-header" class="px-4 pb-3 border-bottom border-light mb-3">
-            <h4 class="mb-0 text-primary">ZUGFeRD Elemente</h4>
+            <h4 class="mb-0 text-primary">FacturX elements</h4>
         </div>
         <nav class="flex-grow-1 tree-view">
             <ul class="list-unstyled mb-0" />
         </nav>
-        <!-- Ziehgriff zum Ändern der Sidebar-Breite -->
+        <!-- Drag handle to change the sidebar width -->
         <div id="resizer"></div>
     </aside>
 
-    <!-- Haupt-Content-Bereich -->
+    <!-- Main content area -->
     <main id="content-area" class="flex-grow-1 overflow-y-auto bg-white rounded-3 m-4 shadow">
         <h1 id="element-name" class="fw-bold text-dark mb-4 pb-3 border-bottom border-secondary-subtle">Wähle ein Element aus</h1>
         <p class="lead text-muted" id="initial-message">
-            Bitte wähle ein ZUGFeRD-Element aus der linken Navigationsleiste, um dessen Details hier anzuzeigen.
+            Please select an element frmo the tree.
         </p>
 
         <div id="element-details" class="d-none">
             <dl class="row">
-                <dt class="col-sm-12 col-md-3 fw-semibold text-secondary mb-2">Beschreibung</dt>
-                <dd class="col-sm-12 col-md-9 mb-3 text-muted" id="detail-description"></dd>
-
                 <dt class="col-sm-12 col-md-3 fw-semibold text-secondary mb-2">ID</dt>
                 <dd class="col-sm-12 col-md-9 mb-3 text-muted" id="detail-id"></dd>
 
                 <dt class="col-sm-12 col-md-3 fw-semibold text-secondary mb-2">XPath</dt>
                 <dd class="col-sm-12 col-md-9 mb-3 text-muted" id="detail-xpath"></dd>
-            </dl>
 
-            <!-- Dummy-Tabelle für Profile Kompatibilität -->
-            <h5 class="mt-5 mb-3 text-dark">ZUGFeRD Profile Kompatibilität</h5>
-            <div class="table-responsive">
-                <table class="table table-bordered table-sm">
-                    <thead class="table-light">
-                        <tr>
-                            <th>Minimum</th>
-                            <th>Basic</th>
-                            <th>Basic WL</th>
-                            <th>Comfort</th>
-                            <th>Extended</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Required</td>
-                            <td>Required</td>
-                            <td>Required</td>
-                            <td>Required</td>
-                            <td>Required</td>
-                        </tr>
-                        <tr>
-                            <td>N.A.</td>
-                            <td>Optional</td>
-                            <td>Required</td>
-                            <td>Required</td>
-                            <td>Required</td>
-                        </tr>
-                        <tr>
-                            <td>N.A.</td>
-                            <td>N.A.</td>
-                            <td>Optional</td>
-                            <td>Optional</td>
-                            <td>Required</td>
-                        </tr>
-                        <tr>
-                            <td>Optional</td>
-                            <td>Optional</td>
-                            <td>Required</td>
-                            <td>Required</td>
-                            <td>Required</td>
-                        </tr>
-                        <tr>
-                            <td>N.A.</td>
-                            <td>N.A.</td>
-                            <td>N.A.</td>
-                            <td>Optional</td>
-                            <td>Required</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+                <dt class="col-sm-12 col-md-3 fw-semibold text-secondary mb-2">Description</dt>
+                <dd class="col-sm-12 col-md-9 mb-3 text-muted" id="detail-description"></dd>
+
+                <dt class="col-sm-12 col-md-3 fw-semibold text-secondary mb-2">Cardinality</dt>
+                <dd class="col-sm-12 col-md-9 mb-3 text-muted" id="detail-cardinality"></dd>
+
+                <dt class="col-sm-12 col-md-3 fw-semibold text-secondary mb-2">Business Rule</dt>
+                <dd class="col-sm-12 col-md-9 mb-3 text-muted" id="detail-business-rule"></dd>
+
+                <dt class="col-sm-12 col-md-3 fw-semibold text-secondary mb-2">Business Term</dt>
+                <dd class="col-sm-12 col-md-9 mb-3 text-muted" id="detail-business-term"></dd>
+
+                <dt class="col-sm-12 col-md-3 fw-semibold text-secondary mb-2">Profiles</dt>
+                <dd class="col-sm-12 col-md-9 mb-3 text-muted" id="detail-profile-support">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Minimum</th>
+                                <th>Basic</th>
+                                <th>Basic WL</th>
+                                <th>Comfort (EN16931)</th>
+                                <th>Extended</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td id="ps-minimum"></td>
+                                <td id="ps-basic"></td>
+                                <td id="ps-basicwl"></td>
+                                <td id="ps-en16931"></td>
+                                <td id="ps-extended"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </dd>
+            </dl>
         </div>
     </main>
 
-    <!-- Bootstrap 5 JavaScript-Bundle (Popper.js für Popups ist enthalten) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Bootstrap 5 JavaScript-Bundle (Popper.js for popups included) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
     <script>
-        // DOM-Elemente abrufen
+        // Get DOM elements
         const sidebar = document.getElementById('sidebar');
         const resizer = document.getElementById('resizer');
         const contentArea = document.getElementById('content-area');
@@ -216,32 +199,37 @@
         const elementNameHeading = document.getElementById('element-name');
         const initialMessage = document.getElementById('initial-message');
         const detailDescription = document.getElementById('detail-description');
+        const detailCardinality = document.getElementById('detail-cardinality');
+        const detailBusinessRule = document.getElementById('detail-business-rule');
+        const detailBusinessTerm = document.getElementById('detail-business-term');
+        const detailProfileSupport = document.getElementById('detail-profile-support');
         const detailId = document.getElementById('detail-id');
         const detailXPath = document.getElementById('detail-xpath');
-        // Selektor für Links, die mit '#elem-' beginnen, um nur Inhalt-Links zu erfassen
+
+        // Selector for links starting with '#elem-' to capture content links only
         const treeLinks = document.querySelectorAll('.tree-view a[href^="#elem-"]');
 
-        // Beispiel-Daten für die ZUGFeRD-Elemente (IDs auf 'elem-X' aktualisiert)
+        // Sample data for ZUGFeRD elements (IDs updated to 'elem-X')
         const elementData = {};
 
-        // --- Logik für die Größenänderung der Sidebar ---
+        // --- Logic for resizing the sidebar ---
         let isResizing = false;
 
         resizer.addEventListener('mousedown', (e) => {
             isResizing = true;
-            document.body.style.cursor = 'ew-resize'; // Cursor ändern
-            sidebar.style.userSelect = 'none'; // Textauswahl während des Ziehens verhindern
-            sidebar.style.pointerEvents = 'none'; // Interaktion mit Sidebar-Inhalt verhindern
+            document.body.style.cursor = 'ew-resize'; // Change cursor
+            sidebar.style.userSelect = 'none'; // Prevent text selection while dragging
+            sidebar.style.pointerEvents = 'none'; // Prevent interaction with sidebar content
         });
 
         document.addEventListener('mousemove', (e) => {
             if (!isResizing) return;
 
-            let newWidth = e.clientX; // Neue Breite basierend auf Mausposition
+            let newWidth = e.clientX; // New width based on mouse position
             const minWidth = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--sidebar-min-width'));
             const maxWidth = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--sidebar-max-width'));
 
-            // Breite innerhalb der Min/Max-Grenzen halten
+            // Keep width within min/max bounds
             if (newWidth < minWidth) newWidth = minWidth;
             if (newWidth > maxWidth) newWidth = maxWidth;
 
@@ -250,34 +238,51 @@
 
         document.addEventListener('mouseup', () => {
             isResizing = false;
-            document.body.style.cursor = 'default'; // Cursor zurücksetzen
-            sidebar.style.userSelect = ''; // Textauswahl wieder erlauben
-            sidebar.style.pointerEvents = ''; // Interaktion mit Sidebar-Inhalt wieder erlauben
+            document.body.style.cursor = 'default'; // Reset cursor
+            sidebar.style.userSelect = ''; // Allow text selection again
+            sidebar.style.pointerEvents = ''; // Allow interaction with sidebar content again
         });
 
-        // --- Logik für die Anzeige des Inhalts und Deep Links ---
+        // --- Logic for displaying content and deep links ---
         function updateContent(elementKey) {
-            const data = elementData[elementKey]; // Daten für das ausgewählte Element abrufen
+            const data = elementData[elementKey]; // Retrieve data for the selected element
 
-            // Alle Links auf "inaktiv" setzen
+            // Set all links to "inactive"
             treeLinks.forEach(link => link.classList.remove('active'));
 
             if (data) {
-                // Inhaltselemente aktualisieren
+                // Update content elements
                 elementNameHeading.textContent = data.name;
                 detailDescription.textContent = data.description;
+                detailBusinessTerm.textContent = data.businessTerm;
+                detailBusinessRule.textContent = data.businessRule;
+                detailCardinality.textContent = data.cardinality;
                 detailId.textContent = data.id;
                 detailXPath.textContent = data.xpath;
-                
-                elementDetailsDiv.classList.remove('d-none'); // Details anzeigen
-                initialMessage.classList.add('d-none'); // Ursprüngliche Nachricht ausblenden
 
-                // Aktiven Link in der Sidebar hervorheben
+                // fill profile table
+                const profiles = [
+                    "MINIMUM",
+                    "BASIC",
+                    "BASICWL",
+                    "EN16931",
+                    "EXTENDED"
+                ];
+
+                profiles.forEach(p => {
+                    const hasProfile = data.profileSupport.includes(`|${p}|`);
+                    document.getElementById(`ps-${p.toLowerCase()}`).textContent = hasProfile ? "X" : "";
+                });
+
+                elementDetailsDiv.classList.remove('d-none'); // Show details
+                initialMessage.classList.add('d-none'); // Hide original message
+
+                // Highlight active link in the sidebar
                 const activeLink = document.querySelector(`.tree-view a[href="#${elementKey}"]`);
                 if (activeLink) {
-                    activeLink.classList.add('active'); // Fügt die CSS-Klasse 'active' hinzu
+                    activeLink.classList.add('active'); // Adds the CSS class 'active'
 
-                    // Deep Link: Alle Elternelemente des aktiven Links aufklappen
+                    // Deep link: Expand all parent elements of the active link
                     let currentUl = activeLink.closest('ul.collapse');
                     while (currentUl) {
                         if (!currentUl.classList.contains('show')) {
@@ -291,56 +296,60 @@
                     activeLink.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 }
             } else {
-                // Wenn kein Element gefunden wird (z.B. ungültiger Hash), auf Startzustand zurücksetzen
-                elementNameHeading.textContent = 'Wähle ein Element aus';
+                // If no element is found (e.g. invalid hash), reset to initial state
+                elementNameHeading.textContent = 'Select an element from the tree';
                 initialMessage.classList.remove('d-none');
                 elementDetailsDiv.classList.add('d-none');
             }
         }
 
-        // Event Listener für Klicks auf die Baum-Links
+        // Event listener for clicks on the tree links
         treeLinks.forEach(link => {
             link.addEventListener('click', (e) => {
-                e.preventDefault(); // Standardverhalten (direktes Springen) verhindern
-                const elementKey = link.getAttribute('href').substring(1); // Element-Key aus dem Hash extrahieren
-                updateContent(elementKey); // Inhalt aktualisieren
-                window.location.hash = elementKey; // URL-Hash für Deep Linking aktualisieren
+                e.preventDefault(); // Prevent default behavior (direct jump)
+                const elementKey = link.getAttribute('href').substring(1); // Extract element key from the hash
+                updateContent(elementKey); // Update content
+                window.location.hash = elementKey; // Update URL hash for deep linking
             });
         });
 
-        // Event Listener für die Aufklapp-Funktion der Chevrons
+        // Event listener for the chevrons' expand/collapse function
         document.querySelectorAll('.toggle-icon').forEach(icon => {
             const targetId = icon.getAttribute('data-bs-target');
-            if (targetId) {
-                const collapseElement = document.querySelector(targetId);
-                if (collapseElement) {
-                    collapseElement.addEventListener('show.bs.collapse', () => {
-                        icon.classList.add('rotated');
-                    });
-                    collapseElement.addEventListener('hide.bs.collapse', () => {
-                        icon.classList.remove('rotated');
-                    });
-                    // Initialer Zustand prüfen und Chevron bei Bedarf rotieren
-                    if (collapseElement.classList.contains('show')) {
-                        icon.classList.add('rotated');
-                    }
-                }
+            if (!targetId) return;
+
+            const collapseElement = document.querySelector(targetId);
+            if (!collapseElement) return;
+
+            collapseElement.addEventListener('show.bs.collapse', (e) => {
+                if (e.target !== collapseElement) return; // <<< WICHTIG
+                icon.classList.add('rotated');
+            });
+
+            collapseElement.addEventListener('hide.bs.collapse', (e) => {
+                if (e.target !== collapseElement) return; // <<< WICHTIG
+                icon.classList.remove('rotated');
+            });
+
+            // initial state
+            if (collapseElement.classList.contains('show')) {
+                icon.classList.add('rotated');
             }
         });
 
-        // Funktion zur Behandlung von Hash-Änderungen (für Deep Links und erste Ladung)
+        // Function to handle hash changes (for deep links and first load)
         function handleHashChange() {
-            const hash = window.location.hash.substring(1); // Hash ohne '#' abrufen
+            const hash = window.location.hash.substring(1); // Get hash without '#'
             if (hash) {
-                updateContent(hash); // Inhalt basierend auf Hash aktualisieren
+                updateContent(hash); // Update content based on hash
             } else {
-                updateContent(null); // Auf Startzustand zurücksetzen, wenn kein Hash vorhanden ist
+                updateContent(null); // Reset to initial state when no hash present
             }
         }
 
-        // Listener für Hash-Änderungen in der URL
+        // Listener for hash changes in the URL
         window.addEventListener('hashchange', handleHashChange);
-        // Initialer Aufruf beim Laden der Seite, um Deep Links zu unterstützen
+        // Initial call on page load to support deep links
         window.addEventListener('load', handleHashChange);
     </script>
 </body>
