@@ -25,7 +25,7 @@ namespace FactoorSharp.FacturXDocumentationRenderer
 
         private static void _BuildNode(Element element, StringBuilder sb, int depth)
         {                        
-            string marginClass = $"ms-2";
+            string marginClass = $"ms-3";
 
             bool hasChildren = element.Children.Count > 0;
             string collapseId = $"collapse-children-of-{element.Id}";
@@ -38,14 +38,14 @@ namespace FactoorSharp.FacturXDocumentationRenderer
             if (hasChildren)
             {
                 sb.Append(
-                    $"<i class=\"fas fa-chevron-right text-secondary toggle-icon me-1\" " +
+                    $"<i class=\"bi bi-chevron-right text-secondary toggle-icon me-1\" " +
                     $"data-bs-toggle=\"collapse\" data-bs-target=\"#{collapseId}\" " +
                     $"aria-expanded=\"false\" aria-controls=\"{collapseId}\"></i>"
                 );
             }
             else
             {
-                sb.Append("<i class=\"fas fa-chevron-right toggle-icon invisible me-1\" style=\"pointer-events:none;\"></i>");
+                sb.Append("<i class=\"bi bi-chevron-right toggle-icon invisible me-1\" style=\"pointer-events:none;\"></i>");
             }
 
             sb.Append(
