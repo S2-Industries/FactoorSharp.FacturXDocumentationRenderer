@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="../FactoorSharp.FacturXDocumentationParser/FactoorSharp.FacturXDocumentationParser.csproj" />
+  <Project Path="FactoorSharp.FacturXDocumentationRenderer.csproj" />
+</Solution>
