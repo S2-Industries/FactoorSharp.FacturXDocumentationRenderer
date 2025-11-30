@@ -24,10 +24,8 @@ namespace FactoorSharp.FacturXDocumentationRenderer
 
 
         private static void _BuildNode(Element element, StringBuilder sb, int depth)
-        {
-            // Bootstrap-konforme, reduzierte Einrückung
-            int marginLevel = Math.Min(depth, 5);
-            string marginClass = $"ms-{marginLevel}";
+        {                        
+            string marginClass = $"ms-2";
 
             bool hasChildren = element.Children.Count > 0;
             string collapseId = $"collapse-children-of-{element.Id}";

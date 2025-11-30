@@ -11,10 +11,16 @@ namespace FactoorSharp.FacturXDocumentationRenderer
 {
     internal class Application
     {
-        internal async Task RunAsync(string[] args)
+        private readonly JsonSerializerOptions _Options = new ()
         {
-            string excelPath = @"E:\develop\ZUGFeRD-csharp-private\documentation\zugferd233de\Dokumentation\3. FACTUR-X 1.07.3 - 2025 05 15 - EN FR VF.xlsx";
-            string xsdPath = @"E:\develop\ZUGFeRD-csharp-private\documentation\zugferd233de\Schema\4. Factur-X_1.07.3_EXTENDED\Factur-X_1.07.3_EXTENDED.xsd";
+            WriteIndented = true,
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        };
+
+        internal async Task RunAsync()
+        {
+            string excelPath = @"E:\develop\ZUGFeRD-csharp\documentation\zugferd233de\Dokumentation\3. FACTUR-X 1.07.3 - 2025 05 15 - EN FR VF.xlsx";
+            string xsdPath = @"E:\develop\ZUGFeRD-csharp\documentation\zugferd233de\Schema\4. Factur-X_1.07.3_EXTENDED\Factur-X_1.07.3_EXTENDED.xsd";
 
             List<Element> rootElements = await Parser.ParseAsync(xsdPath, excelPath);
             int id = 1;
@@ -32,15 +38,10 @@ namespace FactoorSharp.FacturXDocumentationRenderer
 
 
             // render element information
-            Dictionary<string, ElementDetailDTO> dtoMap = ElementDTOConverter.Convert(rootElements);
-            JsonSerializerOptions options = new()
-            {
-                WriteIndented = true,
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-            };
+            Dictionary<string, ElementDetailDTO> dtoMap = ElementDTOConverter.Convert(rootElements);            
             var json = JsonSerializer.Serialize(
                     dtoMap,
-                    options);
+                    _Options);
 
             // store data
             string htmlData = System.IO.File.ReadAllText("template.html");

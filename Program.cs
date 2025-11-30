@@ -5,7 +5,7 @@
         internal static async Task Main(string[] args)
         {
             Application app = new();
-            await app.RunAsync(args);
+            await app.RunAsync();
         }
     }
 }
