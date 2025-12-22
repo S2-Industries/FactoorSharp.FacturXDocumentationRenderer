@@ -276,10 +276,10 @@
         const detailId = document.getElementById('detail-id');
         const detailXPath = document.getElementById('detail-xpath');
 
-        // Selector for links starting with '#elem-' to capture content links only
-        const treeLinks = document.querySelectorAll('.tree-view a[href^="#elem-"]');
+        // Selector for links with class '.element-link' to capture content links only
+        const treeLinks = document.querySelectorAll('.tree-view a.element-link');
 
-        // Sample data for ZUGFeRD elements (IDs updated to 'elem-X')
+        // Sample data for ZUGFeRD elements
         const elementData = {};
 
         // --- Logic for resizing the sidebar ---

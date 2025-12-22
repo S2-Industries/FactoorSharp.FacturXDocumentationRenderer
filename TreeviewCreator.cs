@@ -49,7 +49,7 @@ namespace FactoorSharp.FacturXDocumentationRenderer
             }
 
             sb.Append(
-                $"<a href=\"#{element.AdditionalData["Id"]}\" " +
+                $"<a class=\"element-link\" href=\"#{element.AdditionalData["Id"]}\" " +
                 $"class=\"flex-grow-1 text-body text-decoration-none rounded-1 text-truncate fs-7 lh-1\">" +
                 $"{element.Name}</a>"
             );

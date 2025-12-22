@@ -28,7 +28,14 @@ namespace FactoorSharp.FacturXDocumentationRenderer
             {
                 rootElement.Traverse(element => element.Children, element =>
                 {
-                    element.AdditionalData.Add("Id", $"elem-{id}")  ;
+                    if (!String.IsNullOrWhiteSpace(element.Id))
+                    {
+                        element.AdditionalData.Add("Id", element.Id.ToLower());
+                    }
+                    else
+                    {
+                        element.AdditionalData.Add("Id", $"elem-{id}");
+                    }
                     id++;
                 });
             }
