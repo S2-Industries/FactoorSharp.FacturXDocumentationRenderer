@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FacturX 1.0.7</title>
+    <title>FacturX 1.0.8</title>
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
@@ -405,6 +405,48 @@
             if (collapseElement.classList.contains('show')) {
                 icon.classList.add('rotated');
             }
+        });
+
+        // Click on the treeview item
+        document.querySelectorAll('.tree-view a.element-link').forEach(link => {
+            const parentLi = link.closest('li');
+            if (!parentLi) return;
+
+            const childUl = parentLi.querySelector(':scope > ul.collapse');
+
+            let collapse = null;
+            if (childUl) {
+                collapse = bootstrap.Collapse.getOrCreateInstance(childUl, {
+                    toggle: false
+                });
+
+                // Chevron-Rotation
+                const icon = link.querySelector('.toggle-icon');
+
+                childUl.addEventListener('show.bs.collapse', () => {
+                    icon?.classList.add('rotated');
+                });
+
+                childUl.addEventListener('hide.bs.collapse', () => {
+                    icon?.classList.remove('rotated');
+                });
+            }
+
+            link.addEventListener('click', e => {
+                const hasChildren = !!childUl;
+
+                if (hasChildren) {
+                    e.preventDefault();   // ❗ kein Hash-Sprung
+                    collapse.toggle();   // 👉 Node öffnen/schließen
+                    return;
+                }
+
+                // Leaf-Node → normales Verhalten
+                e.preventDefault();
+                const elementKey = link.getAttribute('href').substring(1);
+                updateContent(elementKey);
+                window.location.hash = elementKey;
+            });
         });
 
         // Function to handle hash changes (for deep links and first load)

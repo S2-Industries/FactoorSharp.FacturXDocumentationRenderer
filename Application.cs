@@ -19,8 +19,14 @@ namespace FactoorSharp.FacturXDocumentationRenderer
 
         internal async Task RunAsync()
         {
+            /*
             string excelPath = @"E:\develop\ZUGFeRD-csharp\documentation\zugferd233de\Dokumentation\3. FACTUR-X 1.07.3 - 2025 05 15 - EN FR VF.xlsx";
             string xsdPath = @"E:\develop\ZUGFeRD-csharp\documentation\zugferd233de\Schema\4. Factur-X_1.07.3_EXTENDED\Factur-X_1.07.3_EXTENDED.xsd";
+            */  
+
+            string excelPath = @"E:\develop\ZUGFeRD-csharp\documentation\zugferd240en\Documentation\1_FACTUR-X 1.08 - 2025 12 04 - EN FR - VF.xlsx";
+            string xsdPath = @"E:\develop\ZUGFeRD-csharp\documentation\zugferd240en\Schema\4_Factur-X_1.08_EXTENDED\FACTUR-X_EXTENDED.xsd";
+
 
             List<Element> rootElements = await Parser.ParseAsync(xsdPath, excelPath);
             int id = 1;
