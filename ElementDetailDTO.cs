@@ -14,5 +14,15 @@ namespace FactoorSharp.FacturXDocumentationRenderer
         public string BusinessTerm { get; set; } = String.Empty;
         public string Cardinality { get; internal set; } = String.Empty;
         public string ProfileSupport { get; internal set; } = String.Empty;
+        public List<ChildElementDTO> Children { get; set; } = new List<ChildElementDTO>();
     }
+
+    /// <summary>
+    /// Represents a child element reference for display in the detail view.
+    /// </summary>
+    public class ChildElementDTO
+    {
+        public string Name { get; set; } = String.Empty;
+        public string ElementId { get; set; } = String.Empty;
+    } // !ChildElementDTO
 }

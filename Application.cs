@@ -49,18 +49,31 @@ namespace FactoorSharp.FacturXDocumentationRenderer
             // render treeview
             string treeviewData = TreeviewCreator.CreateTreeview(rootElements);
 
-
             // render element information
             Dictionary<string, ElementDetailDTO> dtoMap = ElementDTOConverter.Convert(rootElements);            
             var json = JsonSerializer.Serialize(
                     dtoMap,
                     _Options);
 
-            // store data
-            string htmlData = System.IO.File.ReadAllText("template.html");
-            htmlData = htmlData.Replace("<ul class=\"list-unstyled mb-0\" />", treeviewData);
-            htmlData = htmlData.Replace("const elementData = {};", $"const elementData = {json};");
-            System.IO.File.WriteAllText("output.html", htmlData);
+            // Load templates
+            string baseTemplate = System.IO.File.ReadAllText("template.html", Encoding.UTF8);
+            string treeviewBodyTemplate = System.IO.File.ReadAllText("template-treeview-body.html", Encoding.UTF8);
+
+            // Build treeview body content
+            string treeviewBody = treeviewBodyTemplate
+                .Replace("{{TREEVIEW_DATA}}", treeviewData)
+                .Replace("{{ELEMENT_DATA}}", $"const elementData = {json};");
+
+            // Build final treeview HTML
+            string treeviewHtml = baseTemplate
+                .Replace("{{TITLE}}", "FacturX 1.0.8")
+                .Replace("{{BODY_CONTENT}}", treeviewBody);
+
+            System.IO.File.WriteAllText("index.html", treeviewHtml, Encoding.UTF8);
+
+            // render BT list
+            string btListHtml = BTListGenerator.CreateBTList(rootElements, baseTemplate);
+            System.IO.File.WriteAllText("bt-elements.html", btListHtml, Encoding.UTF8);
         } // !RunAsync()
     }
 }

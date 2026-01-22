@@ -19,6 +19,16 @@ namespace FactoorSharp.FacturXDocumentationRenderer
             {
                 rootElement.Traverse(element => element.Children, element =>
                 {
+                    var childrenList = new List<ChildElementDTO>();
+                    foreach (var child in element.Children)
+                    {
+                        childrenList.Add(new ChildElementDTO
+                        {
+                            Name = child.Name ?? string.Empty,
+                            ElementId = child.AdditionalData.ContainsKey("Id") ? child.AdditionalData["Id"] : string.Empty
+                        });
+                    }
+
                     var dto = new ElementDetailDTO
                     {
                         Name = element.Name ?? string.Empty,
@@ -28,7 +38,8 @@ namespace FactoorSharp.FacturXDocumentationRenderer
                         Cardinality = element.CiiCardinality ?? string.Empty,
                         Id = element.Id,
                         Xpath = element.XPath ?? string.Empty,
-                        ProfileSupport = element.ProfileSupport != null ? ("|" + string.Join("|", element.ProfileSupport) + "|").Replace(" ", "") : string.Empty
+                        ProfileSupport = element.ProfileSupport != null ? ("|" + string.Join("|", element.ProfileSupport) + "|").Replace(" ", "") : string.Empty,
+                        Children = childrenList
                     };
 
                     result.Add(element.AdditionalData["Id"], dto);
