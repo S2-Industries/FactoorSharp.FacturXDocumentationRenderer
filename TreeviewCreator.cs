@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using FactoorSharp.FacturXDocumentationParser;
+using FactoorSharp.FacturXDocumentationParser.Common;
 
 namespace FactoorSharp.FacturXDocumentationRenderer
 {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using FactoorSharp.FacturXDocumentationParser;
+using FactoorSharp.FacturXDocumentationParser.Common;
 
 namespace FactoorSharp.FacturXDocumentationRenderer
 {

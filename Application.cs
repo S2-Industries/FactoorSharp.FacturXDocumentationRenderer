@@ -4,7 +4,10 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
-using FactoorSharp.FacturXDocumentationParser;
+using FactoorSharp.FacturXDocumentationParser.Common;
+using FactoorSharp.FacturXDocumentationParser.FacturX;
+using FactoorSharp.FacturXDocumentationParser.XRechnung3;
+using FactoorSharp.FacturXDocumentationParser.ZUGFeRD1;
 
 
 namespace FactoorSharp.FacturXDocumentationRenderer
@@ -63,7 +66,7 @@ namespace FactoorSharp.FacturXDocumentationRenderer
             string xsdPath = @"E:\develop\ZUGFeRD-csharp\documentation\zugferd240en\Schema\4_Factur-X_1.08_EXTENDED\FACTUR-X_EXTENDED.xsd";
 
 
-            List<Element> rootElements = await Parser.ParseAsync(xsdPath, excelPath);
+            List<Element> rootElements = await FacturXParser.ParseAsync(xsdPath, excelPath);
             int id = 1;
             foreach (var rootElement in rootElements)
             {
