@@ -33,9 +33,9 @@ namespace FactoorSharp.FacturXDocumentationRenderer
                     {
                         Name = element.Name ?? string.Empty,
                         Description = element.Description ?? string.Empty,
-                        BusinessRule = element.BusinessRule ?? string.Empty,
+                        BusinessRules = element.BusinessRules,
                         BusinessTerm = element.BusinessTerm ?? string.Empty,
-                        Cardinality = element.CiiCardinality ?? string.Empty,
+                        Cardinality = element.CiiCardinality,
                         Id = element.Id,
                         Xpath = element.XPath ?? string.Empty,
                         ProfileSupport = element.ProfileSupport != null ? ("|" + string.Join("|", element.ProfileSupport) + "|").Replace(" ", "") : string.Empty,
