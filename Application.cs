@@ -42,8 +42,8 @@ namespace FactoorSharp.FacturXDocumentationRenderer
 
 
             // XRechnung 3.0.1
-            const string xrechnungDocPath = @"E:\develop\ZUGFeRD-csharp-899\documentation\xRechnung\XRechnung 3.0.1";
-            const string en16931XsdPath = @"E:\develop\ZUGFeRD-csharp-899\documentation\zugferd240en\Schema\3_Factur-X_1.08_EN16931";
+            const string xrechnungDocPath = @"E:\develop\ZUGFeRD-csharp\documentation\xRechnung\XRechnung 3.0.1";
+            const string en16931XsdPath = @"E:\develop\ZUGFeRD-csharp\documentation\zugferd240en\Schema\3_Factur-X_1.08_EN16931";
             const string version = "3.0.1";
 
             XRechnungExtractor extractor = new XRechnungExtractor();
